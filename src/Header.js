@@ -29,10 +29,10 @@ export default function Header() {
     setUserInfo(null);
   }
 
-  if(userInfo?.username === undefined) {
-    console.log("logged out")
-    return <Navigate to={'/'} />
-  }
+  // if(userInfo?.username === undefined) {
+  //   console.log("logged out")
+  //   return <Navigate to={'/'} />
+  // }
 
   const username = userInfo?.username;
 
