@@ -43,6 +43,11 @@ export default function PostPage() {
 
   if (!postInfo) return '';
 
+  if(userInfo?.username === undefined) {
+    return <Navigate to={'/'} />
+  }
+
+
   return (
     <div className="post-page">
       <h1>{postInfo.title}</h1>

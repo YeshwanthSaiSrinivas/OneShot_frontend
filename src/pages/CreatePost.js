@@ -1,7 +1,8 @@
 import 'react-quill/dist/quill.snow.css';
-import {useState} from "react";
+import {useState,useContext} from "react";
 import {Navigate} from "react-router-dom";
 import Editor from "../Editor";
+import { UserContext } from '../UserContext';
 import axios from 'axios';
 // require("dotenv").config();
 const backend_url = process.env.REACT_APP_BACKEND_URL;
@@ -12,6 +13,7 @@ export default function CreatePost() {
   const [content,setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const {userInfo} = useContext(UserContext);
 
   async function createNewPost(ev) {
     const data = new FormData();
@@ -42,6 +44,10 @@ export default function CreatePost() {
 
   }
   
+
+  if(userInfo?.username === undefined) {
+    return <Navigate to={'/'} />
+  }
 
 
   if (redirect) {

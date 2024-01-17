@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import {Navigate, useParams} from "react-router-dom";
+import { UserContext } from "../UserContext";
 import axios from 'axios';
 import Editor from "../Editor";
 // require("dotenv").config();
@@ -12,6 +13,7 @@ export default function EditPost() {
   const [content,setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect,setRedirect] = useState(false);
+  const {userInfo} = useContext(UserContext);
 
   useEffect(() => {
     fetch(backend_url+'post/'+id)
@@ -59,6 +61,9 @@ export default function EditPost() {
     
   }
 
+  if(userInfo?.username === undefined) {
+    return <Navigate to={'/'} />
+  }
 
   if (redirect) {
     return <Navigate to={'/post/'+id} />
