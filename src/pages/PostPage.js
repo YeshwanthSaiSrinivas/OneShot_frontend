@@ -43,9 +43,9 @@ export default function PostPage() {
 
   if (!postInfo) return '';
 
-  if(userInfo?.username === undefined) {
-    return <Navigate to={'/'} />
-  }
+  // if(userInfo?.username === undefined) {
+  //   return <Navigate to={'/'} />
+  // }
 
 
   return (

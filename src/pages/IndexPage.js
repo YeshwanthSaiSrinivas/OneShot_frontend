@@ -17,7 +17,6 @@ export default function IndexPage() {
   }, []);
   return (
     <>
-    {!userInfo && <Header/>}
       {posts.length > 0 && posts.map(post => (
         <Post {...post} />
       ))}
