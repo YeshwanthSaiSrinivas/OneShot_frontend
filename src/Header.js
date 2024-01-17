@@ -2,7 +2,6 @@ import {Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "./UserContext";
 import {Navigate} from "react-router-dom";
-import './App.css'
 const backend_url = process.env.REACT_APP_BACKEND_URL;
 
 
