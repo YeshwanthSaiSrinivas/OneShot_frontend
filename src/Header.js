@@ -6,7 +6,7 @@ const backend_url = process.env.REACT_APP_BACKEND_URL;
 
 
 export default function Header() {
-  const [loggedIn, isLoggedIn] = useState(false);
+  // const [loggedIn, isLoggedIn] = useState(false);
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
     if(userInfo?.username) {
@@ -25,13 +25,13 @@ export default function Header() {
       credentials: 'include',
       method: 'POST',
     });
-    isLoggedIn(true);
+    // isLoggedIn(true);
     setUserInfo(null);
   }
 
-  if(loggedIn) {
+  if(userInfo?.username === undefined) {
     console.log("logged out")
-    return <Navigate to={'/login'} />
+    return <Navigate to={'/'} />
   }
 
   const username = userInfo?.username;
