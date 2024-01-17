@@ -34,21 +34,24 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
+
     const formData = new FormData();
-    formData.append("file",files[0]);
-    formData.append("upload_preset","toxzyuph");
-    try {
-      const url="https://api.cloudinary.com/v1_1/dgwycpv3z/image/upload"
-      const res = await axios.post(url,formData);
-      data.set('cover',res.data.url);
-      const response = await fetch(backend_url+'post', {
-        method: 'PUT',
-        body: data,
-        credentials: 'include',
-      });
-      if (response.ok) {
-        setRedirect(true);
+    try{
+      if(files?.[0] && files.length > 0) {
+        formData.append("file",files[0]);
+        formData.append("upload_preset","toxzyuph");
+        const url="https://api.cloudinary.com/v1_1/dgwycpv3z/image/upload"
+        const res = await axios.post(url,formData);
+        data.set('cover',res.data.url);
       }
+        const response = await fetch(backend_url+'post', {
+          method: 'PUT',
+          body: data,
+          credentials: 'include',
+        });
+        if (response.ok) {
+          setRedirect(true);
+        }
     } catch (error) {
       console.log(error);
     }
