@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import {UserContext} from "./UserContext";
-import {Navigate} from "react-router-dom";
+// import {Navigate} from "react-router-dom";
 const backend_url = process.env.REACT_APP_BACKEND_URL;
 
 
