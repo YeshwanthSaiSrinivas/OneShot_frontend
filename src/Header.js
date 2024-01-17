@@ -9,13 +9,15 @@ export default function Header() {
   const [loggedIn, isLoggedIn] = useState(false);
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
-    fetch(backend_url+'profile', {
-      credentials: 'include',
-    }).then(response => {
-      response.json().then(userInfo => {
-        setUserInfo(userInfo);
-      });
-    });
+    if(userInfo?.username) {
+      fetch(backend_url+'profile', {
+        credentials: 'include',
+      }).then(response => {
+        response.json().then(userInfo => {
+          setUserInfo(userInfo);
+        });
+      });  
+    }
   }, []);
 
   function logout() {
@@ -29,7 +31,7 @@ export default function Header() {
 
   if(loggedIn) {
     console.log("logged out")
-    return <Navigate to={'/'} />
+    return <Navigate to={'/login'} />
   }
 
   const username = userInfo?.username;
