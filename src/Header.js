@@ -1,10 +1,12 @@
 import {Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "./UserContext";
+import {Navigate} from "react-router-dom";
 const backend_url = process.env.REACT_APP_BACKEND_URL;
 
 
 export default function Header() {
+  const [loggedIn, isLoggedIn] = useState(false);
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
     fetch(backend_url+'profile', {
@@ -21,7 +23,12 @@ export default function Header() {
       credentials: 'include',
       method: 'POST',
     });
+    isLoggedIn(true);
     setUserInfo(null);
+  }
+
+  if(loggedIn) {
+    return <Navigate to={'/'} />
   }
 
   const username = userInfo?.username;
